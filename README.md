@@ -1,11 +1,11 @@
 # cookbook-pipline cookbook
 
-Install docker, jenkins and optionally test kitchen , berkshelf , foodcritic etc.. and setup up build/test
-pipelines for cookbook or any application.
+Install docker, jenkins and optionally test kitchen , berkshelf or foodcritic etc.. also setup up build/test
+pipelines for cookbook or any other application.
 
 # Requirements
 
-  Change .kitchen.yml file of your cookbook to use kitchen-docker
+  For testing cookbook with docker and test kitchen change .kitchen.yml file of your cookbook to use kitchen-docker
   plugin, more information is available in the [here](http://www.timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/) and [here](http://github.com/timusg/s3cmd/blob/master/.kitchen.yml)
 
 # Usage
