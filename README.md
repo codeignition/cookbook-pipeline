@@ -52,7 +52,7 @@ and browse to http://127.0.0.1:8080/ for access jenkins ui
    - default true
 
 
-* `install_gems?`
+* `gems`
    - specify gems to be installed in main ruby
    - default %w{foodcritic bundler rake kitchen-docker berkshelf test-kitchen}
 
