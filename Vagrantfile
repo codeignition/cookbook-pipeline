@@ -10,6 +10,8 @@ Vagrant.configure("2") do |config|
     default_config.vm.network :forwarded_port, guest: 8080, host: 8080
   end
 
+  config.omnibus.chef_version = :latest
+
   config.vm.provision :chef_solo do |chef|
     chef.run_list = [
       "recipe[cookbook-pipeline::default]"
