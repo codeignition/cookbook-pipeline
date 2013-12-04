@@ -29,7 +29,7 @@ end
 end
 
 # add jenkins to admin group required for sudo access
-group "admin" do
+group "sudo" do
   action :modify
   members "jenkins"
   append true
