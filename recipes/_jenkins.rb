@@ -32,7 +32,7 @@ end
 admin_group = 'root' 
 admin_group = 'sudo' if ['ubuntu', 'debian'].include? node[:platform]
 
-group "sudo" do
+group admin_group do
   action :modify
   members "jenkins"
   append true
