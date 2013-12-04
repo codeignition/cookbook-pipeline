@@ -29,6 +29,9 @@ end
 end
 
 # add jenkins to admin group required for sudo access
+admin_group = 'root' 
+admin_group = 'sudo' if ['ubuntu', 'debian'].include? node[:platform]
+
 group "sudo" do
   action :modify
   members "jenkins"
