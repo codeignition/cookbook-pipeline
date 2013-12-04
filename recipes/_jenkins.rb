@@ -9,7 +9,7 @@
 include_recipe 'jenkins::server'
 
  %w(git).each do |plugin|
-   jenkins_cli "install-plugin #{plugin}"
+   jenkins_plugin plugin
  end
 
 node[:jobs].each do |job|
