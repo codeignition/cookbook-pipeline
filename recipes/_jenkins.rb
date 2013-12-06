@@ -13,19 +13,24 @@ include_recipe 'jenkins::server'
  end
 
 node[:jobs].each do |job|
-job_name = job[:name]
-job_config = File.join(node[:jenkins][:node][:home], "#{job_name}-config.xml")
+  job_name = job[:name]
+  job_config = File.join(node[:jenkins][:node][:home], "#{job_name}-config.xml")
 
-template job_config do
-  source    'config.xml.erb'
-  variables :job_name => job_name, :git_branch =>job[:git_branch], :email_id => node[:git][:email] , :build_steps => job[:build_steps]
-end
+  template job_config do
+    source    'config.xml.erb'
+    variables({ :job_name => job_name,
+                :git_branch =>job[:git_branch],
+                :email_id => node[:git][:email],
+                :trigger => job[:trigger],
+                :build_steps => job[:build_steps]
+    })
+  end
 
- jenkins_job job_name do
-   action :create
-   config job_config
-   notifies :restart , "service[jenkins]"
- end
+  jenkins_job job_name do
+    action :create
+    config job_config
+    notifies :restart , "service[jenkins]"
+  end
 end
 
 # add jenkins to admin group required for sudo access
