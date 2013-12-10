@@ -8,9 +8,17 @@
 
 include_recipe 'jenkins::server'
 
- %w(git).each do |plugin|
-   jenkins_cli "install-plugin #{plugin}"
- end
+
+execute "update jenkins update center" do
+  command "wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d'  > #{node[:jenkins][:server][:home]}/updates/default.json"
+  user "#{node[:jenkins][:server][:user]}"
+  group "#{node[:jenkins][:server][:user]}"
+  creates "#{node[:jenkins][:server][:home]}/updates/default.json"
+end
+
+%w(git).each do |plugin|
+  jenkins_cli "install-plugin #{plugin}"
+end
 
 node[:jobs].each do |job|
   job_name = job[:name]
