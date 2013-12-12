@@ -21,7 +21,7 @@ execute "update jenkins update center" do
   creates "#{node[:jenkins][:server][:home]}/updates/default.json"
 end
 
-%w(git).each do |plugin|
+%w(git greenballs).each do |plugin|
   jenkins_cli "install-plugin #{plugin}"
 end
 
